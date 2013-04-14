@@ -112,3 +112,9 @@ Disclaimer
 ----------
 
 This works for me, if you try it yourself and break your Raspberry Pi, ruin your food, or burn down your kitchen then I'm sorry, but it's your problem not mine.
+
+Acknowledgements
+----------------
+
+Gordon Henderson - Wiring Pi
+Duncan McGregor - Raspberry Strogonanoff
