@@ -84,6 +84,18 @@ Here's a reminder of the Raspberry Pi GPIO pinout:
 
 ![](http://pi4j.com/images/p1header-large.png)
 
+Before you start
+----------------
+
+The sousvide.py and t1.sh scripts both need the correct address for the DS18B20. First run the script to install the onewire drivers:
+
+    cd ~/SousVide
+    ./setup.sh
+    
+Now take a look in /sys/bus/w1/devices/ to find the device ID for the DS18B20 (e.g. 28-000003ea0350).
+
+Edit sousvide.py and t1.sh with nano/vi or whatever to have the correct ID.
+
 Running
 -------
 
@@ -93,9 +105,10 @@ It's a good idea to run this in a screen session:
     
 Optional - have a separate process monitoring temperature, so that there's a log afterwards:
 
-    cd SousVide
     ./templog.sh &
     tail -f temp_log
+
+Press ctrl-c to create another screen session (ctrl-0 and ctrl-1 can then be used to switch between sessions).
     
 The main script will default to 55C:
 
