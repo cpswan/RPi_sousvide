@@ -56,7 +56,7 @@ Optional - install the full raspberry-stroganoff that this is based on (key file
 Install these scripts:
 
     cd~
-    git clone https://github.com/cpswan/RasPi/SousVide
+    git clone https://github.com/cpswan/RasPi/sousvide
     
 Circuit
 -------
@@ -89,7 +89,7 @@ Before you start
 
 The sousvide.py and t1.sh scripts both need the correct address for the DS18B20. First run the script to install the onewire drivers:
 
-    cd ~/SousVide
+    cd ~/sousvide
     ./setup.sh
     
 Now take a look in /sys/bus/w1/devices/ to find the device ID for the DS18B20 (e.g. 28-000003ea0350).
