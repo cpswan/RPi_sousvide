@@ -25,12 +25,13 @@ parser = OptionParser()
 parser.add_option("-t", "--target", type = int, default = 55)
 parser.add_option("-p", "--prop", type = int, default = 6)
 parser.add_option("-i", "--integral", type = int, default = 2)
+parser.add_option("-b", "--bias", type = int, default = 22)
 (options, args) = parser.parse_args()
 target = options.target * 1000
 print ('Target temp is %d' % (options.target))
 P = options.prop
 I = options.integral
-
+B = options.bias
 # Initialise some variables for the control loop
 interror = 0
 pwr_cnt=1
@@ -56,13 +57,8 @@ while True:
     print(temperature)
     error = target - temperature
     interror = interror + error
-    power = ((P * error) + ((I * interror)/100))/100
+    power = B + ((P * error) + ((I * interror)/100))/100
     print power
-    if (power > 0):
-        pwr_tot = pwr_tot + power
-    pwr_ave = pwr_tot / pwr_cnt
-    pwr_cnt = pwr_cnt + 1
-    print pwr_ave
     # Make sure that if power should be off then it is
     if (state=="off"):
         turn_off()
