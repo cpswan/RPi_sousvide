@@ -46,7 +46,7 @@ turn_on()
 
 temperature=tempdata()
 print("Initial temperature ramp up")
-while (target - temperature > 3000):
+while (target - temperature > 6000):
     sleep(15)
     temperature=tempdata()
     print(temperature)
