@@ -56,7 +56,7 @@ Optional - install the full raspberry-stroganoff that this is based on (key file
 Install these scripts:
 
     cd~
-    git clone https://github.com/cpswan/RasPi
+    git clone https://github.com/cpswan/RPi_sousvide
     
 Circuit
 -------
