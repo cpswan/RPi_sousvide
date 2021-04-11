@@ -1,11 +1,12 @@
+#!/usr/bin/python
 import os
 from subprocess import Popen, PIPE, call
 from optparse import OptionParser
 from time import sleep
 
 def tempdata():
-    # Replace 28-000003ae0350 with the address of your DS18B20
-    pipe = Popen(["cat","/sys/bus/w1/devices/w1_bus_master1/28-000003ea0350/w1_slave"], stdout=PIPE)
+    # Replace 28-000004ce4a45 with the address of your DS18B20
+    pipe = Popen(["cat","/sys/bus/w1/devices/w1_bus_master1/28-000004ce4a45/w1_slave"], stdout=PIPE)
     result = pipe.communicate()[0]
     result_list = result.split("=")
     temp_mC = int(result_list[-1]) # temp in milliCelcius
@@ -14,11 +15,14 @@ def tempdata():
 def setup_1wire():
   os.system("sudo modprobe w1-gpio && sudo modprobe w1-therm")
 
+def setup_pilight() :
+  os.system("sudo service pilight start")
+
 def turn_on():
-  os.system("sudo ./strogonanoff_sender.py --channel 4 --button 1 --gpio 0 on")
+  os.system("sudo ./on.sh")
 
 def turn_off():
-  os.system("sudo ./strogonanoff_sender.py --channel 4 --button 1 --gpio 0 off") 
+  os.system("sudo ./off.sh") 
 
 #Get command line options
 parser = OptionParser()
@@ -36,10 +40,10 @@ B = options.bias
 interror = 0
 pwr_cnt=1
 pwr_tot=0
-
 # Setup 1Wire for DS18B20
-setup_1wire()
-
+#setup_1wire()
+# Setup pilight
+setup_pilight()
 # Turn on for initial ramp up
 state="on"
 turn_on()
@@ -59,9 +63,16 @@ while True:
     interror = interror + error
     power = B + ((P * error) + ((I * interror)/100))/100
     print power
-    # Make sure that if power should be off then it is
+    if (power > 0):
+        pwr_tot = pwr_tot + power
+    pwr_ave = pwr_tot / pwr_cnt
+    pwr_cnt = pwr_cnt + 1
+    print pwr_ave
+    # Make sure that if we should be off then we are
     if (state=="off"):
         turn_off()
+    else:
+        turn_on()
     # Long duration pulse width modulation
     for x in range (1, 100):
         if (power > x):
