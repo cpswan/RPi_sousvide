@@ -25,7 +25,7 @@ http://shop.ciseco.co.uk/slice-of-pi-add-on-for-raspberry-pi/
 Installation
 ------------
 
-Starting with Raspbian "wheezy". First make sure that everything is up to date:
+Starting with Raspbian. First make sure that everything is up to date:
 
     sudo apt-get update && sudo apt-get upgrade -y
     
@@ -33,25 +33,7 @@ Install dependencies:
 
     sudo apt-get install -y git-core python2.7-dev python-setuptools screen
     
-Install WiringPi (I'm not sure that WiringPi Python needs this first, but it didn't work without when I tried):
-
-    cd ~
-    git clone git://git.drogon.net/wiringPi
-    cd wiringPi
-    ./build
-    
-Install WiringPi Python:
-
-    cd ~
-    git clone https://github.com/WiringPi/WiringPi-Python.git
-    cd WiringPi-Python/
-    git submodule update --init
-    sudo python setup.py install
-    
-Optional - install the full raspberry-stroganoff that this is based on (key files are already in this repo):
-
-    cd ~
-    git clone https://github.com/dmcg/raspberry-strogonanoff
+[Install PiLight](https://manual.pilight.org/installation.html)    
     
 Install these scripts:
 
@@ -87,14 +69,9 @@ Here's a reminder of the Raspberry Pi GPIO pinout:
 Before you start
 ----------------
 
-The sousvide.py and t1.sh scripts both need the correct address for the DS18B20. First run the script to install the onewire drivers:
+Take a look in /sys/bus/w1/devices/ to find the device ID for the DS18B20 (e.g. 28-000003ea0350).
 
-    cd ~/RPi_sousvide
-    ./setup.sh
-    
-Now take a look in /sys/bus/w1/devices/ to find the device ID for the DS18B20 (e.g. 28-000003ea0350).
-
-Edit sousvide.py and t1.sh with nano/vi or whatever to have the correct ID.
+Edit biased.py and t1.sh with nano/vi or whatever to have the correct ID.
 
 Running
 -------
@@ -108,15 +85,15 @@ Optional - have a separate process monitoring temperature, so that there's a log
     ./templog.sh &
     tail -f temp_log
 
-Press ctrl-c to create another screen session (ctrl-0 and ctrl-1 can then be used to switch between sessions).
+Press `ctrl-a c` to create another screen session (`ctrl-a 0` and `ctrl-a 1` can then be used to switch between sessions).
     
 The main script will default to 55C:
 
-    python ./sousvide.py
+    ./biased.py
     
 But it can be overridden to cook at different temperatures:
 
-    python ./sousvide.py -t 60
+    ./biased.py -t 60
     
 It's also possible to change the control loop variables with command line switches to tune the script to a given cooker.
 
@@ -125,10 +102,3 @@ Disclaimer
 ----------
 
 This works for me, if you try it yourself and break your Raspberry Pi, ruin your food, or burn down your kitchen then I'm sorry, but it's your problem not mine.
-
-Acknowledgements
-----------------
-
-Gordon Henderson - Wiring Pi
-
-Duncan McGregor - Raspberry Strogonanoff
