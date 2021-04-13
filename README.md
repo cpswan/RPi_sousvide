@@ -10,7 +10,10 @@ A slow cooker or rice cooker (or anything else that has a heating element and th
 
 A 434MHz remote controlled mains socket such as:
 
-http://www.maplin.co.uk/additional-remote-controlled-mains-socket-531560
+[Lloytron A1210WH](https://smile.amazon.co.uk/Lloytron-A1210WH-Remote-Controlled-Socket/dp/B0053XRZ9I)  
+
+I was originally using a socket from [Maplin](https://web.archive.org/web/20120201112313/http://www.maplin.co.uk/additional-remote-controlled-mains-socket-531560),
+but they're no longer in business, and that type of socket is impossible to come by these days.
 
 A 434MHz RF transmitter such as:
 
@@ -18,9 +21,7 @@ http://proto-pic.co.uk/434mhz-rf-link-transmitter/
 
 A waterproof DS18B20 temperature sensor (from eBay) and a 4k7 pull up resistor.
 
-Optional - a Ciseco Slice of Pi to keep everything tidy:
-
-http://shop.ciseco.co.uk/slice-of-pi-add-on-for-raspberry-pi/
+I used a [Ciseco Slice of Pi](http://shop.ciseco.co.uk/slice-of-pi-add-on-for-raspberry-pi/) to keep everything tidy, but they're also out of business now :(
 
 Installation
 ------------
@@ -31,7 +32,7 @@ Starting with Raspbian. First make sure that everything is up to date:
     
 Install dependencies:
 
-    sudo apt-get install -y git-core python2.7-dev python-setuptools screen
+    sudo apt-get install -y git-core screen
     
 [Install PiLight](https://manual.pilight.org/installation.html)  
 I've added a copy of my /etc/pilight/config.json here.
@@ -72,7 +73,7 @@ Before you start
 
 Take a look in /sys/bus/w1/devices/ to find the device ID for the DS18B20 (e.g. 28-000003ea0350).
 
-Edit biased.py and t1.sh with nano/vi or whatever to have the correct ID.
+Edit 3biased.py and t1.sh with nano/vi or whatever to have the correct ID.
 
 Running
 -------
