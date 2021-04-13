@@ -33,7 +33,8 @@ Install dependencies:
 
     sudo apt-get install -y git-core python2.7-dev python-setuptools screen
     
-[Install PiLight](https://manual.pilight.org/installation.html)    
+[Install PiLight](https://manual.pilight.org/installation.html)  
+I've added a copy of my /etc/pilight/config.json here.
     
 Install these scripts:
 
@@ -89,11 +90,11 @@ Press `ctrl-a c` to create another screen session (`ctrl-a 0` and `ctrl-a 1` can
     
 The main script will default to 55C:
 
-    ./biased.py
+    ./3biased.py
     
 But it can be overridden to cook at different temperatures:
 
-    ./biased.py -t 60
+    ./3biased.py -t 60
     
 It's also possible to change the control loop variables with command line switches to tune the script to a given cooker.
 
