@@ -1,0 +1,37 @@
+{
+	"devices": {},
+	"rules": {},
+	"gui": {},
+	"settings": {
+		"log-level": 6,
+		"pid-file": "/var/run/pilight.pid",
+		"log-file": "/var/log/pilight.log",
+		"webserver-enable": 1,
+		"webserver-root": "/usr/local/share/pilight/webgui",
+		"webserver-http-port": 5001,
+		"webserver-https-port": 5002,
+		"webserver-cache": 1,
+		"gpio-platform": "raspberrypi1b1"
+	},
+	"hardware": {
+		"433gpio": {
+			"sender": 0,
+			"receiver": 2
+		}
+	},
+	"registry": {
+		"webserver": {
+			"ssl": {
+				"certificate": {
+					"secure": 0,
+					"location": "/etc/pilight/pilight.pem"
+				}
+			}
+		},
+		"pilight": {
+			"version": {
+				"current": "8.1.5"
+			}
+		}
+	}
+}
