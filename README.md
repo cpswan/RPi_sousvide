@@ -66,7 +66,7 @@ and the DS18B20 needs to be connected like this:
 
 Here's a reminder of the Raspberry Pi GPIO pinout:
 
-![](http://pi4j.com/images/p1header-large.png)
+![](https://web.archive.org/web/20141024172626if_/http://pi4j.com/images/p1header-large.png)
 
 Before you start
 ----------------
